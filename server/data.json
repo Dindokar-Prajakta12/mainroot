@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "name": "Admin",
+      "email": "admin@rbap.in",
+      "password": "adminPassword@rbap123!",
+      "role": "admin"
+    },
+    {
+      "name": "Manager",
+      "email": "manager@rbap.in",
+      "password": "managerPassword@rbap123!",
+      "role": "manager"
+    },
+    {
+      "name": "User",
+      "email": "user@rbap.in",
+      "password": "userPassword@rbap123!",
+      "role": "user"
+    }
+  ],
+  "managerTeam": [
+    {
+      "name": "Alice Dawson",
+      "role": "Developer",
+      "status": "active",
+      "lastActive": "2026-03-30"
+    },
+    {
+      "name": "Samir Patel",
+      "role": "Designer",
+      "status": "active",
+      "lastActive": "2026-03-30"
+    },
+    {
+      "name": "Diana Lee",
+      "role": "QA",
+      "status": "pending",
+      "lastActive": "2026-03-29"
+    }
+  ],
+  "userTasks": [
+    {
+      "id": 1,
+      "title": "Submit monthly report",
+      "project": "Sales Dashboard",
+      "completed": false,
+      "dueDate": "2026-04-05"
+    },
+    {
+      "id": 2,
+      "title": "Review team feedback",
+      "project": "Project Insights",
+      "completed": true,
+      "dueDate": "2026-03-28"
+    },
+    {
+      "id": 3,
+      "title": "Finish UI prototype",
+      "project": "Mobile Redesign",
+      "completed": false,
+      "dueDate": "2026-04-08"
+    }
+  ],
+  "adminStats": {
+    "totalUsers": 3,
+    "activeProjects": 8,
+    "monthlyRevenue": 128400,
+    "systemHealth": "green"
+  }
+}

@@ -1,0 +1,76 @@
+.approvals-container {
+  padding: 20px;
+}
+
+.approvals-container h2 {
+  margin-bottom: 20px;
+}
+
+.approvals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.approvals-table th,
+.approvals-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.approvals-table th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.pending {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.status.approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status.rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.approve-btn {
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  margin-right: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.approve-btn:hover {
+  background-color: #16a34a;
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reject-btn:hover {
+  background-color: #dc2626;
+}

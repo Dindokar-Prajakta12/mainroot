@@ -1,0 +1,59 @@
+.requests-page {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.requests-page h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.requests-table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.requests-table thead {
+  background-color: #28a745;
+  color: white;
+}
+
+.requests-table th,
+.requests-table td {
+  padding: 12px;
+}
+
+.requests-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: 0.2s;
+}
+
+.requests-table tbody tr:hover {
+  background-color: #f3fff6;
+}
+
+/* Status */
+.req-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.approved {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.pending {
+  background: #fff3cd;
+  color: #856404;
+}

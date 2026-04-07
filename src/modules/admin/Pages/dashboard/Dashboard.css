@@ -1,0 +1,49 @@
+/* Full Page Wrapper */
+.dashboard {
+  width: 100%;
+}
+
+/* Title */
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #2563eb;
+}
+
+/* Cards Section */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 22px;
+  color: #2563eb;
+  margin-bottom: 4px;
+}
+
+.card p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Chart Box */
+.chart-box {
+  margin-top: 18px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  height: 260px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}

@@ -1,0 +1,58 @@
+/* Global reset and body styles */
+@import './global.css';
+
+/* MAIN LAYOUT */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  background-color: #4f46e5; /* Blue background */
+  color: white;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* FOOTER */
+footer {
+  background-color: #0f172a;
+  color: #cbd5f5;
+  padding: 15px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* MAIN CONTENT AREA */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* GENERAL CONTAINER FOR MOBILE FRIENDLY PAGE */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  header {
+    font-size: 16px;
+    padding: 15px;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+}

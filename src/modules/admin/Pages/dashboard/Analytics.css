@@ -1,0 +1,22 @@
+/* Dashboard Wrapper */
+.dashboard {
+  width: 100%;
+}
+
+/* Title */
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #2563eb;
+}
+
+/* Chart Box */
+.chart-box {
+  margin-top: 18px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  height: 260px; /* Adjust height for better visualization */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}

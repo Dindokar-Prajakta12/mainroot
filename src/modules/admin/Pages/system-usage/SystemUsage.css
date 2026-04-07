@@ -1,0 +1,59 @@
+.usage-container {
+  padding: 20px;
+}
+
+.usage-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.usage-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.usage-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.usage-card h3 {
+  font-size: 14px;
+  color: #555;
+}
+
+.usage-card p {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.usage-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.usage-table th,
+.usage-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.usage-table th {
+  background-color: #f9fafb;
+  font-weight: 500;
+}

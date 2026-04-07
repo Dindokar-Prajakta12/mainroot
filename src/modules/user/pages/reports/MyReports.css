@@ -1,0 +1,41 @@
+.reports-page {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.reports-page h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.reports-table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reports-table thead {
+  background-color: #6f42c1;
+  color: white;
+}
+
+.reports-table th,
+.reports-table td {
+  padding: 12px;
+}
+
+.reports-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: 0.2s;
+}
+
+.reports-table tbody tr:hover {
+  background-color: #f5f3ff;
+}

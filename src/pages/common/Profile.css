@@ -1,0 +1,120 @@
+/* Full Page Centering */
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 300px; /* Sidebar spacing */
+  margin-bottom: 90px;
+  background: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card */
+.profile-card,
+.profile-form {
+  width: 500px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+/* Hover Effect */
+.profile-card:hover,
+.profile-form:hover {
+  transform: translateY(-4px);
+}
+
+/* Heading */
+.profile-card h2,
+.profile-form h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Profile Image Section */
+.profile-image-section {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1976d2;
+  margin-bottom: 12px;
+}
+
+/* Upload Button */
+.upload-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, #0b1220, #0f172a);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.upload-btn:hover {
+  background: #125ea7;
+}
+
+/* Profile Info */
+.profile-info,
+.info-row {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: #f8f9fb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+.info-row span:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Active Status */
+.active-status {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Edit Button */
+.edit-btn,
+.profile-form button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background: linear-gradient(180deg, #0b1220, #0f172a);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.edit-btn:hover,
+.profile-form button:hover {
+  background: #125ea7;
+}

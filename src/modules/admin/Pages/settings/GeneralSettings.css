@@ -1,0 +1,42 @@
+.settings-container {
+  padding: 24px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.settings-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.settings-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.settings-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.settings-card label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #374151;
+}
+
+.settings-card input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}

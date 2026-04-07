@@ -1,0 +1,39 @@
+/* Manager Layout Styles */
+.manager-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.manager-layout.collapsed .main-section {
+  margin-left: 80px; /* Adjust collapsed sidebar width */
+}
+
+.manager-layout.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.main-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.35s ease;
+}
+
+.manager-layout.collapsed .main-section {
+  margin-left: var(--sidebar-collapsed);
+}
+
+.content {
+  flex-grow: 1;
+  padding: 24px;
+  background-color: #f3f4f6;
+}
+
+footer {
+  margin-top: auto;
+  padding: 20px;
+  background-color: #222222;
+  color: white;
+}

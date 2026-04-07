@@ -1,0 +1,25 @@
+/* FOOTER STYLES */
+.footer {
+  width: 100%; /* Ensure full width */
+  background: linear-gradient(180deg, #0b1220, #0f172a); /* Consistent background */
+  color: #cbd5f5; /* Light color for text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border at top */
+  position: fixed; /* Make the footer stay at the bottom of the screen */
+  bottom: 0; /* Align to the bottom of the page */
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .footer {
+    font-size: 12px; /* Slightly smaller font on smaller screens */
+    padding: 10px; /* Adjust padding for mobile */
+  }
+}

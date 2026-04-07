@@ -1,0 +1,21 @@
+/* User Layout Styles */
+.user-layout {
+  display: flex;
+}
+
+.main-content {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+}
+
+.main-content.expanded {
+  margin-left: 250px; /* Width of expanded sidebar */
+}
+
+.page-content {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+}

@@ -1,0 +1,168 @@
+:root {
+  --sidebar-width: 320px;          /* Increased width */
+  --sidebar-collapsed: 100px;      /* Slightly increased collapsed width */
+  --primary: #4f46e5;
+  --primary-soft: rgba(79, 70, 229, 0.15);
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, #0b1220, #0f172a);
+  color: var(--text-main);
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  z-index: 1000;
+
+  /* Smooth slide animation */
+  transition: width 0.35s ease;
+}
+
+/* COLLAPSED */
+.sidebar.closed {
+  width: var(--sidebar-collapsed);
+}
+
+/* ===== LOGO ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 18px;
+  margin-top: 50px;
+  transition: all 0.35s ease;
+  font-size: 20px;
+}
+
+/* CENTER LOGO WHEN COLLAPSED */
+.sidebar.closed .logo {
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.logo span {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-radius: 14px;
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+/* LOGO TEXT */
+.logo h3 {
+  white-space: nowrap;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ===== MENU ===== */
+.menu {
+  list-style: none;
+  padding: 9px;
+}
+
+/* ROW */
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: background 0.25s ease;
+}
+
+.menu-row:hover {
+  background: var(--primary-soft);
+}
+
+/* ITEM */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ICON */
+.menu-item svg {
+  font-size: 22px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* TEXT */
+.menu-item span {
+  white-space: nowrap;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ACTIVE */
+.menu-group.active .menu-row {
+  background: linear-gradient(
+    90deg,
+    rgba(79, 70, 229, 0.35),
+    rgba(79, 70, 229, 0.15)
+  );
+}
+
+/* CHEVRON */
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* ===== SUBMENU ===== */
+.submenu {
+  margin: 8px 0 12px 60px; /* adjusted for wider sidebar */
+  list-style: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.submenu li {
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+.submenu li:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== COLLAPSED BEHAVIOR (SMOOTH) ===== */
+.sidebar.closed .menu-item span,
+.sidebar.closed .logo h3 {
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+}
+
+.sidebar.closed .submenu,
+.sidebar.closed .rotate {
+  display: none;
+}
+
+/* ===== SMALL ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

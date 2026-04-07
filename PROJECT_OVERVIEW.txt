@@ -1,0 +1,484 @@
+================================================================================
+PROJECT OVERVIEW - RBAP (Role-Based Admin Panel)
+================================================================================
+
+PROJECT NAME: RBAP - Role-Based Admin Panel
+COMPANY: [Your Company Name - Insert Company Details]
+VERSION: 1.0.0
+DATE: April 2026
+DEVELOPED BY: Development Team
+
+================================================================================
+PROJECT DESCRIPTION
+================================================================================
+
+RBAP is a comprehensive role-based dashboard management system designed for 
+enterprises to manage users, tasks, team coordination, and analytics across 
+three distinct user roles: Admin, Manager, and User.
+
+The application provides:
+- Secure role-based access control
+- Real-time dashboard analytics
+- User management system
+- Task and project tracking
+- Team coordination tools
+- System monitoring and reporting
+
+================================================================================
+TECHNOLOGY STACK
+================================================================================
+
+FRONTEND:
+  - React 19.2.4 (JavaScript UI Framework)
+  - Vite 8.0.1 (Build tool & dev server)
+  - React Router Dom 7.13.2 (Routing)
+  - React Icons 5.6.0 (Icon library)
+  - Chart.js 4.5.1 (Data visualization)
+  - React ChartJS 5.3.1 (Chart components)
+  - CSS3 (Styling with responsive design)
+
+BACKEND:
+  - Python 3.14.3 (Programming language)
+  - Django 4.2.11 (Web framework)
+  - Django REST Framework 3.14.0 (RESTful API)
+  - Django CORS Headers 4.3.1 (Cross-origin support)
+
+DATABASE:
+  - SQLite3 (File-based SQL database)
+  - Location: backend/db.sqlite3
+
+DEFAULT LOGIN CREDENTIALS:
+  - Admin: admin@rbap.in / adminPassword@rbap123!
+  - Manager: manager@rbap.in / managerPassword@rbap123!
+  - User: user@rbap.in / userPassword@rbap123!
+
+RUNNING THE APP:
+  - Backend: cd backend && .venv\Scripts\python.exe manage.py runserver 8000
+  - Frontend: cd mainroot && npm run dev
+  - Open the Vite URL shown in terminal (e.g. http://localhost:5176/)
+
+================================================================================
+PROJECT STRUCTURE
+================================================================================
+
+mainroot/
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── App.jsx (Main router component)
+│   │   │   ├── main.jsx (Entry point)
+│   │   │   └── router.jsx (Route definitions)
+│   │   ├── auth/
+│   │   │   ├── context/
+│   │   │   │   └── AuthContext.jsx (Auth state management)
+│   │   │   ├── guards/
+│   │   │   │   ├── PrivateRoute.jsx (Protected routes)
+│   │   │   │   └── RoleRoute.jsx (Role-based routes)
+│   │   │   ├── pages/
+│   │   │   │   ├── LoginPage.jsx (Login form)
+│   │   │   │   └── RegisterPage.jsx (Registration form)
+│   │   │   ├── utils/
+│   │   │   │   ├── token.js (Token management)
+│   │   │   │   └── roleRedirect.js (Role navigation logic)
+│   │   │   └── styles/
+│   │   │       └── LoginPage.css, RegisterPage.css
+│   │   ├── api/
+│   │   │   ├── api.js (HTTP request handler)
+│   │   │   └── authApi.js (Auth API calls)
+│   │   ├── layouts/
+│   │   │   ├── AdminLayout.jsx
+│   │   │   ├── ManagerLayout.jsx
+│   │   │   └── UserLayout.jsx
+│   │   ├── modules/
+│   │   │   ├── admin/
+│   │   │   │   ├── components/ (AdminNavbar, AdminSidebar)
+│   │   │   │   └── Pages/ (Dashboard, Users, Reports, Settings)
+│   │   │   ├── manager/
+│   │   │   │   ├── components/ (ManagerNavbar, ManagerSidebar)
+│   │   │   │   └── pages/ (Dashboard, Team, Approvals, Reports)
+│   │   │   └── user/
+│   │   │       ├── components/ (UserNavbar, UserSidebar)
+│   │   │       └── pages/ (Dashboard, Tasks, Profile, Settings)
+│   │   ├── pages/common/ (Shared pages like Profile, Help, ChangePassword)
+│   │   └── Styles/ (Global CSS)
+│   ├── package.json
+│   ├── vite.config.js
+│   └── index.html
+│
+├── backend/
+│   ├── config/
+│   │   ├── settings.py (Django configuration)
+│   │   ├── urls.py (URL routing)
+│   │   ├── wsgi.py (WSGI application)
+│   │   └── __init__.py
+│   ├── apps/
+│   │   ├── auth_app/
+│   │   │   ├── views.py (Login, register, profile endpoints)
+│   │   │   ├── urls.py
+│   │   │   ├── apps.py
+│   │   │   └── models.py
+│   │   ├── users/
+│   │   │   ├── models.py (CustomUser model)
+│   │   │   ├── serializers.py (User serializers)
+│   │   │   ├── views.py (User viewsets)
+│   │   │   ├── urls.py
+│   │   │   ├── apps.py
+│   │   │   └── management/commands/create_default_users.py
+│   │   └── tasks/
+│   │       ├── models.py (Task, TeamMember models)
+│   │       ├── serializers.py (Task serializers)
+│   │       ├── views.py (Task, team endpoints)
+│   │       ├── urls.py
+│   │       └── apps.py
+│   ├── manage.py
+│   ├── db.sqlite3 (SQLite database)
+│   └── requirements.txt
+│
+├── .env (Environment variables)
+├── package.json
+└── PROJECT_OVERVIEW.txt (This file)
+
+================================================================================
+HOW THE PROJECT WORKS - START TO END WORKFLOW
+================================================================================
+
+PHASE 1: INITIALIZATION & STARTUP
+----------------------------------
+1. User opens browser and navigates to http://localhost:5173 (or 5174)
+2. Frontend (React + Vite) loads from src/app/main.jsx
+3. App.jsx checks localStorage for authentication token
+4. If no token exists, user is redirected to /login page
+
+PHASE 2: AUTHENTICATION (LOGIN/REGISTER)
+------------------------------------------
+A. FIRST-TIME USER (REGISTRATION):
+   1. User clicks "Register now" on login page
+   2. User fills form: Full Name, Email, Password, Confirm Password
+   3. Frontend calls POST /api/auth/register/ (Backend)
+   4. Backend validates inputs and creates user with role="user"
+   5. User is redirected to /login page
+   
+B. EXISTING USER (LOGIN):
+   1. User enters email and password
+   2. Frontend calls POST /api/auth/login/ (Backend)
+   3. Backend queries SQLite database for CustomUser
+   4. Password is verified using Django's password hashing
+   5. Backend generates Token and returns it
+   6. Frontend stores token in localStorage
+   7. AuthContext updates user state
+   8. User is redirected to their dashboard based on role:
+      - Admin → /admin/dashboard
+      - Manager → /manager/dashboard
+      - User → /user/dashboard
+
+PHASE 3: DASHBOARD ACCESS (ROLE-BASED)
+----------------------------------------
+A. ADMIN DASHBOARD (/admin/dashboard):
+   1. User with role="admin" enters admin layout
+   2. Components display:
+      - Dashboard: Overview, Analytics, System Usage
+      - Users Management: Add Users, All Users, Roles & Permissions
+      - Reports: Sales Reports, User Activity
+      - Settings: General Settings, Security Settings
+   3. Backend API calls made to:
+      - GET /api/users/all_users/ (Fetch all users - admin only)
+      - GET /api/tasks/dashboard-summary/ (Admin stats)
+
+B. MANAGER DASHBOARD (/manager/dashboard):
+   1. User with role="manager" enters manager layout
+   2. Components display:
+      - Dashboard: Team performance metrics
+      - Team Management: View team members
+      - Approvals: Pending approvals queue
+      - Reports: Team performance reports
+   3. Backend API calls made to:
+      - GET /api/tasks/manager-team/ (Fetch team members)
+      - GET /api/tasks/dashboard-summary/ (Manager stats)
+
+C. USER DASHBOARD (/user/dashboard):
+   1. User with role="user" enters user layout
+   2. Components display:
+      - Dashboard: Personal stats and recent tasks
+      - My Tasks: Assigned tasks list
+      - Profile: User profile information
+      - Settings: User preferences
+      - Help: Support resources
+   3. Backend API calls made to:
+      - GET /api/tasks/user-tasks/ (Fetch user's tasks)
+      - GET /api/tasks/dashboard-summary/ (User stats)
+
+PHASE 4: COMMON OPERATIONS
+----------------------------
+1. VIEW OWN PROFILE:
+   - User clicks "My Profile" or profile icon
+   - Frontend calls GET /api/auth/profile/
+   - Backend returns authenticated user's data
+   - Profile page displays user information
+
+2. CHANGE PASSWORD:
+   - User navigates to Settings → Change Password
+   - User enters old password and new password
+   - Frontend calls POST to password change endpoint
+   - Backend validates old password and updates new one
+
+3. LOGOUT:
+   - User clicks logout button
+   - Frontend:
+     - Removes token from localStorage
+     - Clears AuthContext state
+     - Removes role from localStorage
+     - Redirects to /login
+
+PHASE 5: SECURITY & ROLE PROTECTION
+-------------------------------------
+1. All routes use RoleRoute component
+   - Checks user.role from AuthContext
+   - Redirects to /unauthorized if role doesn't match
+   
+2. API Endpoints protected with Token Authentication:
+   - All requests include: Authorization: Token <token>
+   - Backend verifies token validity
+   - Returns 401 if token invalid/expired
+   
+3. Private Routes:
+   - PrivateRoute wraps unauthenticated routes
+   - If no token in localStorage, redirects to /login
+
+================================================================================
+DEFAULT CREDENTIALS FOR TESTING
+================================================================================
+
+ADMIN ACCOUNT:
+  Email: admin@rbap.in
+  Password: adminPassword@rbap123!
+  Role: admin
+  Permissions: Full system access, manage users, view reports
+
+MANAGER ACCOUNT:
+  Email: manager@rbap.in
+  Password: managerPassword@rbap123!
+  Role: manager
+  Permissions: Team management, task approvals, team reports
+
+USER ACCOUNT:
+  Email: user@rbap.in
+  Password: userPassword@rbap123!
+  Role: user
+  Permissions: View own tasks, personal dashboard
+
+================================================================================
+API ENDPOINTS REFERENCE
+================================================================================
+
+AUTHENTICATION ENDPOINTS:
+  POST   /api/auth/login/          - User login (returns token)
+  POST   /api/auth/register/       - New user registration
+  GET    /api/auth/profile/        - Get authenticated user profile
+
+USERS ENDPOINTS:
+  GET    /api/users/               - List all users (paginated)
+  GET    /api/users/<id>/          - Get user details
+  GET    /api/users/me/            - Get current user
+  GET    /api/users/all_users/     - All users (admin only)
+
+TASKS ENDPOINTS:
+  GET    /api/tasks/user-tasks/    - Get current user's tasks
+  GET    /api/tasks/manager-team/  - Get manager's team members
+  GET    /api/tasks/dashboard-summary/ - Get dashboard statistics
+
+================================================================================
+HOW TO RUN THE PROJECT
+================================================================================
+
+PREREQUISITES:
+  - Python 3.14+ installed
+  - Node.js 18+ installed
+  - Git (optional, for version control)
+
+SETUP STEPS:
+
+1. BACKEND SETUP:
+   a. Navigate to backend folder:
+      cd backend
+   
+   b. Create and activate Python virtual environment:
+      python -m venv .venv
+      .venv\Scripts\activate  (Windows)
+      source .venv/bin/activate  (Mac/Linux)
+   
+   c. Install Python dependencies:
+      pip install -r requirements.txt
+   
+   d. Run database migrations:
+      python manage.py migrate
+   
+   e. Create default users:
+      python manage.py create_default_users
+   
+   f. Start Django development server:
+      python manage.py runserver
+      (Server runs on http://localhost:8000)
+
+2. FRONTEND SETUP:
+   a. In new terminal, navigate to project root:
+      cd ..
+   
+   b. Install Node dependencies:
+      npm install
+   
+   c. Start Vite development server:
+      npm run dev
+      (Frontend runs on http://localhost:5173)
+
+3. ACCESS APPLICATION:
+   - Open browser: http://localhost:5173
+   - Login with credentials above
+   - Use admin@rbap.in to test admin features
+
+BUILDING FOR PRODUCTION:
+   Frontend build:
+     npm run build
+   (Creates optimized dist/ folder)
+
+================================================================================
+DATABASE SCHEMA (SQLite)
+================================================================================
+
+TABLES:
+
+1. users_customuser
+   - id (Integer, Primary Key)
+   - username (String, Unique)
+   - email (String, Unique)
+   - password (String, hashed)
+   - first_name (String)
+   - last_name (String)
+   - role (String: admin, manager, user)
+   - is_active (Boolean, default: True)
+   - date_joined (DateTime)
+
+2. tasks_task
+   - id (Integer, Primary Key)
+   - title (String)
+   - description (Text)
+   - project (String)
+   - status (String: pending, in_progress, completed)
+   - assigned_to (Foreign Key → users_customuser)
+   - due_date (Date)
+   - created_at (DateTime)
+   - updated_at (DateTime)
+
+3. tasks_teammember
+   - id (Integer, Primary Key)
+   - name (String)
+   - role (String)
+   - status (String)
+   - manager (Foreign Key → users_customuser)
+   - joined_at (DateTime)
+
+4. authtoken_token
+   - key (String, Primary Key - Authentication token)
+   - user_id (Foreign Key → users_customuser)
+   - created (DateTime)
+
+================================================================================
+FEATURES BY ROLE
+================================================================================
+
+ADMIN FEATURES:
+  ✓ Dashboard with system-wide analytics
+  ✓ User management (add, edit, delete users)
+  ✓ Role and permission management
+  ✓ Sales and activity reports
+  ✓ System usage monitoring
+  ✓ Security settings configuration
+  ✓ System health overview
+
+MANAGER FEATURES:
+  ✓ Team dashboard with team metrics
+  ✓ View team members and their status
+  ✓ Task approvals and workflow management
+  ✓ Team performance reports
+  ✓ Team settings configuration
+  ✓ Task assignment capabilities
+
+USER FEATURES:
+  ✓ Personal dashboard with task overview
+  ✓ View assigned tasks
+  ✓ Task status updates
+  ✓ Personal profile management
+  ✓ Change password
+  ✓ View help resources
+  ✓ Personal settings
+
+SHARED FEATURES (All Roles):
+  ✓ Secure login/registration
+  ✓ Profile management
+  ✓ Password change
+  ✓ Responsive design (desktop/mobile)
+  ✓ Logout functionality
+  ✓ Role-based redirects
+
+================================================================================
+IMPORTANT NOTES
+================================================================================
+
+1. CORS CONFIGURATION:
+   - Backend allows requests from localhost:5173 and localhost:5174
+   - Update CORS_ALLOWED_ORIGINS in backend/config/settings.py for production
+
+2. SECURITY:
+   - Change SECRET_KEY in backend/config/settings.py for production
+   - Set DEBUG = False for production
+   - Use environment variables for sensitive data
+   - Implement HTTPS in production
+
+3. DATABASE:
+   - SQLite database is file-based (db.sqlite3)
+   - For production, use PostgreSQL or MySQL
+   - Backup db.sqlite3 regularly
+
+4. TOKEN AUTHENTICATION:
+   - Tokens are stored in Django's authtoken_token table
+   - Token expires based on Django settings (default: never)
+   - Implement token refresh mechanism for long-lived sessions
+
+5. ENVIRONMENT VARIABLES (.env):
+   - VITE_API_URL=http://localhost:8000
+   - Update to production backend URL when deploying
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+ISSUE: "Backend server not found" on login
+SOLUTION: Ensure Django server is running on http://localhost:8000
+
+ISSUE: "CORS error" when calling API
+SOLUTION: Check CORS_ALLOWED_ORIGINS in backend/config/settings.py
+
+ISSUE: "No such table" errors
+SOLUTION: Run migrations: python manage.py migrate
+
+ISSUE: "User not found" during login
+SOLUTION: Run: python manage.py create_default_users
+
+ISSUE: "Port already in use"
+SOLUTION: Kill existing process or use different port:
+  - Frontend: npm run dev -- --port 5175
+  - Backend: python manage.py runserver 8001
+
+================================================================================
+CONTACT & SUPPORT
+================================================================================
+
+For issues or questions about this project, please contact:
+[Company Email/Support Information]
+[Company Website]
+[Company Phone]
+[Development Team Contact]
+
+================================================================================
+PROJECT COMPLETED: April 2026
+VERSION: 1.0.0
+================================================================================
