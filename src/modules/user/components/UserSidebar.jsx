@@ -8,15 +8,10 @@ import {
   FiSettings,
   FiChevronDown,
 } from "react-icons/fi";
-import "./UserSidebar.css"; // Corrected CSS import
+import "./UserSidebar.css";
 
 const UserSidebar = ({ collapsed }) => {
   const [openMenu, setOpenMenu] = useState("Dashboard");
-
-  // ✅ User Role (can be dynamically set based on auth)
-  const user = {
-    role: "User", // For example, this role can be "User" as per your scenario
-  };
 
   useEffect(() => {
     if (collapsed) setOpenMenu("");
@@ -28,6 +23,7 @@ const UserSidebar = ({ collapsed }) => {
 
   return (
     <aside className={`sidebar ${collapsed ? "closed" : ""}`}>
+      
       {/* LOGO */}
       <div className="logo">
         <span>E</span>
@@ -35,7 +31,8 @@ const UserSidebar = ({ collapsed }) => {
       </div>
 
       <ul className="menu">
-        {/* ================= DASHBOARD ================= */}
+        
+        {/* Dashboard */}
         <li className={`menu-group ${openMenu === "Dashboard" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Dashboard")}>
             <div className="menu-item">
@@ -56,7 +53,7 @@ const UserSidebar = ({ collapsed }) => {
           )}
         </li>
 
-        {/* ================= MY TASKS ================= */}
+        {/* Tasks */}
         <li>
           <NavLink to="/user/tasks" className="menu-row">
             <div className="menu-item">
@@ -66,7 +63,7 @@ const UserSidebar = ({ collapsed }) => {
           </NavLink>
         </li>
 
-        {/* ================= MY REQUESTS ================= */}
+        {/* Requests */}
         <li>
           <NavLink to="/user/requests" className="menu-row">
             <div className="menu-item">
@@ -76,7 +73,7 @@ const UserSidebar = ({ collapsed }) => {
           </NavLink>
         </li>
 
-        {/* ================= MY REPORTS ================= */}
+        {/* Reports */}
         <li>
           <NavLink to="/user/reports" className="menu-row">
             <div className="menu-item">
@@ -86,7 +83,7 @@ const UserSidebar = ({ collapsed }) => {
           </NavLink>
         </li>
 
-        {/* ================= PROFILE ================= */}
+        {/* Profile */}
         <li>
           <NavLink to="/user/profile" className="menu-row">
             <div className="menu-item">
@@ -96,7 +93,7 @@ const UserSidebar = ({ collapsed }) => {
           </NavLink>
         </li>
 
-        {/* ================= SETTINGS ================= */}
+        {/* Settings */}
         <li>
           <NavLink to="/user/settings" className="menu-row">
             <div className="menu-item">
@@ -105,6 +102,7 @@ const UserSidebar = ({ collapsed }) => {
             </div>
           </NavLink>
         </li>
+
       </ul>
     </aside>
   );

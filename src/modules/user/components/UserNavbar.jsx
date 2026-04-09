@@ -4,9 +4,8 @@ import { FiMenu, FiBell, FiSun, FiMoon, FiLogOut } from "react-icons/fi";
 import AuthContext from "../../../auth/context/AuthContext";
 import "./UserNavbar.css";
 
-const UserNavbar = ({ toggleSidebar }) => {
+const UserNavbar = ({ toggleSidebar, darkMode, setDarkMode }) => {
   const [open, setOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
@@ -20,7 +19,7 @@ const UserNavbar = ({ toggleSidebar }) => {
     }
   }, [darkMode]);
 
-  // Close dropdown if clicked outside
+  // Close dropdown outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -41,6 +40,7 @@ const UserNavbar = ({ toggleSidebar }) => {
       </div>
 
       <div className="nav-right" ref={dropdownRef}>
+        
         {/* Dark Mode Toggle */}
         {darkMode ? (
           <FiSun className="nav-icon" onClick={() => setDarkMode(false)} />
@@ -63,22 +63,14 @@ const UserNavbar = ({ toggleSidebar }) => {
           )}
         </div>
 
-        {/* Dropdown Menu */}
+        {/* Dropdown */}
         {open && (
           <div className="dropdown">
-            <Link
-              to="/user/profile"
-              className="dropdown-item"
-              onClick={() => setOpen(false)}
-            >
+            <Link to="/user/profile" className="dropdown-item" onClick={() => setOpen(false)}>
               My Profile
             </Link>
 
-            <Link
-              to="/user/settings"
-              className="dropdown-item"
-              onClick={() => setOpen(false)}
-            >
+            <Link to="/user/settings" className="dropdown-item" onClick={() => setOpen(false)}>
               Settings
             </Link>
 

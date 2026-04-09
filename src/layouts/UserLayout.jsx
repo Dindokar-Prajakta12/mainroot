@@ -1,25 +1,38 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import UserSidebar from "../modules/user/components/UserSidebar";
 import UserNavbar from "../modules/user/components/UserNavbar";
-import { Outlet } from "react-router-dom";
-import "./styles/UserLayout.css"; // Import CSS for UserLayout
+import "./styles/UserLayout.css";
 
 const UserLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleSidebar = () => {
-    setCollapsed(!collapsed);
+    setCollapsed((prev) => !prev);
   };
 
   return (
-    <div className="user-layout">
+    <div className={`user-layout ${collapsed ? "collapsed" : ""} ${darkMode ? "dark" : ""}`}>
+      
+      {/* Sidebar */}
       <UserSidebar collapsed={collapsed} />
 
-      <div className={`main-content ${collapsed ? "expanded" : ""}`}>
-        <UserNavbar toggleSidebar={toggleSidebar} />
-        <div className="page-content">
+      {/* Main Section */}
+      <div className="main-section">
+
+        {/* Navbar */}
+        <UserNavbar
+          toggleSidebar={toggleSidebar}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
+
+        {/* Page Content */}
+        <main className="content">
           <Outlet />
-        </div>
+        </main>
+
       </div>
     </div>
   );

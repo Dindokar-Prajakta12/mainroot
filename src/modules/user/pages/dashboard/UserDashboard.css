@@ -37,3 +37,18 @@
   color: #777;
   font-size: 14px;
 }
+.dashboard {
+  padding: 30px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
