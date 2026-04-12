@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+/* ===== THEME ===== */
+import { ThemeProvider } from "../Context/ThemeContext";
+
 /* ===== Layouts ===== */
 import AdminLayout from "../layouts/AdminLayout";
 import ManagerLayout from "../layouts/ManagerLayout";
@@ -9,7 +12,6 @@ import UserLayout from "../layouts/UserLayout";
 import Login from "../auth/pages/LoginPage";
 import Register from "../auth/pages/RegisterPage";
 import { AuthProvider } from "../auth/context/AuthContext";
-import PrivateRoute from "../auth/guards/PrivateRoute";
 import RoleRoute from "../auth/guards/RoleRoute";
 
 /* ===== Admin Pages ===== */
@@ -61,62 +63,70 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
+        
+        {/* 🔥 ADD THIS */}
+        <ThemeProvider>
 
-          {/* Login */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Routes>
 
-          {/* Default Redirect */}
-          <Route path="/" element={<Navigate to={getDefaultRoute()} replace />} />
+            {/* Login */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-          {/* ================= ADMIN ROUTES ================= */}
-          <Route path="/admin" element={<RoleRoute role="admin" element={<AdminLayout />} />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="dashboard/overview" element={<Overview />} />
-            <Route path="dashboard/analytics" element={<Analytics />} />
-            <Route path="users" element={<Users />}>
-              <Route path="all" element={<AllUsers />} />
-              <Route path="add" element={<AddUser />} />
+            {/* Default Redirect */}
+            <Route path="/" element={<Navigate to={getDefaultRoute()} replace />} />
+
+            {/* ADMIN */}
+            <Route path="/admin" element={<RoleRoute role="admin" element={<AdminLayout />} />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="dashboard/overview" element={<Overview />} />
+              <Route path="dashboard/analytics" element={<Analytics />} />
+              <Route path="users" element={<Users />}>
+                <Route path="all" element={<AllUsers />} />
+                <Route path="add" element={<AddUser />} />
+              </Route>
+              <Route path="roles-permissions" element={<RolePermissions />} />
+              <Route path="reports/sales" element={<SalesReport />} />
+              <Route path="reports/activity" element={<UserActivity />} />
+              <Route path="system-usage" element={<SystemUsage />} />
+              <Route path="settings/general" element={<GeneralSettings />} />
+              <Route path="settings/security" element={<SecuritySettings />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="change-password" element={<ChangePassword />} />
+              <Route path="my-profile" element={<MyProfile />} />
+              <Route path="help" element={<Help />} />
             </Route>
-            <Route path="roles-permissions" element={<RolePermissions />} />
-            <Route path="reports/sales" element={<SalesReport />} />
-            <Route path="reports/activity" element={<UserActivity />} />
-            <Route path="system-usage" element={<SystemUsage />} />
-            <Route path="settings/general" element={<GeneralSettings />} />
-            <Route path="settings/security" element={<SecuritySettings />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="change-password" element={<ChangePassword />} />
-            <Route path="my-profile" element={<MyProfile />} />
-            <Route path="help" element={<Help />} />
-          </Route>
 
-          {/* ================= MANAGER ROUTES ================= */}
-          <Route path="/manager" element={<RoleRoute role="manager" element={<ManagerLayout />} />}>
-            <Route path="dashboard" element={<ManagerDashboard />} />
-            <Route path="team" element={<Team />} />
-            <Route path="approvals" element={<Approvals />} />
-            <Route path="reports" element={<ManagerReports />} />
-            <Route path="profile" element={<ManagerProfile />} />
-            <Route path="settings" element={<ManagerSettings />} />
-          </Route>
+            {/* MANAGER */}
+            <Route path="/manager" element={<RoleRoute role="manager" element={<ManagerLayout />} />}>
+              <Route path="dashboard" element={<ManagerDashboard />} />
+              <Route path="team" element={<Team />} />
+              <Route path="approvals" element={<Approvals />} />
+              <Route path="reports" element={<ManagerReports />} />
+              <Route path="profile" element={<ManagerProfile />} />
+              <Route path="settings" element={<ManagerSettings />} />
+            </Route>
 
-          {/* ================= USER ROUTES ================= */}
-          <Route path="/user" element={<RoleRoute role="user" element={<UserLayout />} />}>
-            <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<UserDashboard />} />
-            <Route path="tasks" element={<MyTasks />} />
-            <Route path="requests" element={<MyRequests />} />
-            <Route path="reports" element={<MyReports />} />
-            <Route path="profile" element={<UserProfile />} />
-            <Route path="settings" element={<UserSettings />} />
-            <Route path="help" element={<UserHelp />} />
-          </Route>
+            {/* USER */}
+            <Route path="/user" element={<RoleRoute role="user" element={<UserLayout />} />}>
+              <Route index element={<Navigate to="dashboard" />} />
+              <Route path="dashboard" element={<UserDashboard />} />
+              <Route path="tasks" element={<MyTasks />} />
+              <Route path="requests" element={<MyRequests />} />
+              <Route path="reports" element={<MyReports />} />
+              <Route path="profile" element={<UserProfile />} />
+              <Route path="settings" element={<UserSettings />} />
+              <Route path="help" element={<UserHelp />} />
+            </Route>
 
-          {/* Unauthorized */}
-          <Route path="/unauthorized" element={<Unauthorized />} />
+            {/* Unauthorized */}
+            <Route path="/unauthorized" element={<Unauthorized />} />
 
-        </Routes>
+          </Routes>
+
+        </ThemeProvider>
+        {/* 🔥 END */}
+
       </AuthProvider>
     </BrowserRouter>
   );

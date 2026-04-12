@@ -1,23 +1,18 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiMenu, FiBell, FiSun, FiMoon, FiLogOut } from "react-icons/fi";
+import { ThemeContext } from "../../../Context/ThemeContext";
 import AuthContext from "../../../auth/context/AuthContext";
 import "./UserNavbar.css";
 
-const UserNavbar = ({ toggleSidebar, darkMode, setDarkMode }) => {
+const UserNavbar = ({ toggleSidebar }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
-
+ const { darkMode, setDarkMode } = useContext(ThemeContext); 
   // Apply dark mode to body
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark-theme");
-    } else {
-      document.body.classList.remove("dark-theme");
-    }
-  }, [darkMode]);
+
 
   // Close dropdown outside click
   useEffect(() => {

@@ -8,23 +8,17 @@ import {
   FiLogOut
 } from "react-icons/fi";
 import AuthContext from "../../../auth/context/AuthContext";
+import { ThemeContext } from "../../../Context/ThemeContext";
 import "./Navbar.css";
 
 const Navbar = ({ toggleSidebar }) => {
   const [open, setOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext); 
+ const { darkMode, setDarkMode } = useContext(ThemeContext); 
 
-  /* ===== APPLY THEME TO BODY ===== */
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark-theme");
-    } else {
-      document.body.classList.remove("dark-theme");
-    }
-  }, [darkMode]);
 
   /* ===== CLOSE DROPDOWN ON OUTSIDE CLICK ===== */
   useEffect(() => {

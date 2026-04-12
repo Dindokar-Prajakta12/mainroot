@@ -1,120 +1,170 @@
+/* ===== ROOT VARIABLES ===== */
 :root {
-  --sidebar-width: 320px;
-  --sidebar-collapsed: 100px;
   --primary: #4f46e5;
-  --primary-soft: rgba(79, 70, 229, 0.15);
+
+  /* LIGHT THEME */
+  --bg-navbar: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --dropdown-bg: #ffffff;
+}
+
+/* ===== DARK THEME VARIABLES ===== */
+.dark-theme {
+  --bg-navbar: linear-gradient(180deg, #0b1220, #0f172a);
   --text-main: #e5e7eb;
   --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --dropdown-bg: #0f172a;
 }
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: var(--sidebar-width);
-  height: 100vh;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
+/* ===== NAVBAR ===== */
+.navbar {
+  height: 70px;
+  width: 100%;
+  background: var(--bg-navbar);
   color: var(--text-main);
-  position: fixed;
-  left: 0;
-  top: 0;
-  overflow-x: hidden;
-  z-index: 1000;
-  transition: width 0.35s ease;
-}
-
-.sidebar.closed {
-  width: var(--sidebar-collapsed);
-}
-
-/* ===== LOGO ===== */
-.logo {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 18px;
-  margin-top: 50px;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: all 0.3s ease;
 }
 
-.sidebar.closed .logo {
+/* ===== LEFT ===== */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-left h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== HAMBURGER ===== */
+.menu-icon {
+  font-size: 22px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  line-height: 1;
+  transition: 0.25s;
 }
 
-.logo span {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  border-radius: 14px;
+.menu-icon:hover {
+  color: var(--text-main);
+  transform: scale(1.1);
+}
+
+/* ===== RIGHT ===== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* ===== ICONS ===== */
+.nav-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: 0.25s;
+}
+
+.nav-icon:hover {
+  color: var(--text-main);
+}
+
+/* ===== AVATAR ===== */
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-}
-
-.logo h3 {
-  font-size: 20px;
-}
-
-/* ===== MENU ===== */
-.menu {
-  list-style: none;
-  padding: 10px;
-}
-
-.menu-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 18px;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
-.menu-row:hover {
-  background: var(--primary-soft);
+.avatar:hover {
+  transform: scale(1.05);
 }
 
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.menu-item svg {
-  font-size: 20px;
-  color: var(--text-muted);
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  width: 190px;
+  background: var(--dropdown-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: fadeIn 0.2s ease;
 }
 
-/* ACTIVE */
-.menu-group.active .menu-row {
-  background: var(--primary-soft);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* SUBMENU */
-.submenu {
-  margin-left: 50px;
-  margin-top: 6px;
+.dropdown-item {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.submenu li {
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
+.dropdown-item:hover {
+  background: rgba(79, 70, 229, 0.1);
 }
 
-.submenu li:hover {
+/* DARK hover fix */
+.dark-theme .dropdown-item:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* COLLAPSE */
-.sidebar.closed .menu-item span,
-.sidebar.closed .logo h3 {
-  display: none;
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-color);
 }
 
-.sidebar.closed .submenu {
-  display: none;
-}
-
-/* ROTATE ICON */
-.rotate {
-  transform: rotate(180deg);
+/* LOGOUT */
+.logout {
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

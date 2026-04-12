@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import UserSidebar from "../modules/user/components/UserSidebar";
 import UserNavbar from "../modules/user/components/UserNavbar";
+import Footer from "../components/common/Footer"; // ✅ ADD THIS
 import "./styles/UserLayout.css";
 
 const UserLayout = () => {
@@ -32,6 +33,9 @@ const UserLayout = () => {
         <main className="content">
           <Outlet />
         </main>
+
+        {/* ✅ Footer Added */}
+        <Footer />
 
       </div>
     </div>

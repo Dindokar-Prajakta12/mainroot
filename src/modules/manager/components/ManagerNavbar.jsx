@@ -2,15 +2,14 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiBell, FiSun, FiMoon, FiLogOut } from "react-icons/fi";
 import AuthContext from "../../../auth/context/AuthContext";
+import { ThemeContext } from "../../../Context/ThemeContext";
 import "./ManagerNavbar.css";
 
-const ManagerNavbar = ({ toggleSidebar, darkMode, setDarkMode }) => {
+const ManagerNavbar = ({ toggleSidebar}) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const { logout } = useContext(AuthContext);
-
-  useEffect(() => {
-    document.body.className = darkMode ? "dark-theme" : "";
-  }, [darkMode]);
+ const { darkMode, setDarkMode } = useContext(ThemeContext); 
+ 
 
   return (
     <header className="navbar">

@@ -13,6 +13,33 @@ html, body {
   color: #333; /* Default text color */
   font-size: 16px; /* Default font size */
 }
+/* ===== LIGHT THEME ===== */
+:root {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: linear-gradient(180deg, #0b1220, #0f172a);
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --hover: rgba(0, 0, 0, 0.05);
+
+  --primary: #4f46e5;
+}
+
+/* ===== DARK THEME ===== */
+.dark-theme {
+  --bg-main: #0b1220;
+  --bg-card: #0f172a;
+  --bg-sidebar: linear-gradient(180deg, #0b1220, #0f172a);
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --hover: rgba(255, 255, 255, 0.08);
+}
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {

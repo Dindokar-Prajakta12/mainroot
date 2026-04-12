@@ -30,3 +30,30 @@ footer {
   background-color: #222222;
   color: white;
 }
+.admin-layout,
+.manager-layout,
+.user-layout {
+  display: flex;
+  background: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* MAIN SECTION */
+.main-section {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  transition: 0.3s;
+}
+
+/* COLLAPSED */
+.collapsed .main-section {
+  margin-left: var(--sidebar-collapsed);
+}
+
+/* CONTENT */
+.content {
+  padding: 20px;
+  background: var(--bg-main);
+  min-height: calc(100vh - 70px);
+}

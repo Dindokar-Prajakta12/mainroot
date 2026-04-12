@@ -1,16 +1,64 @@
-/* Global reset and body styles */
-@import './global.css';
+/* ===== IMPORT GLOBAL (if needed) ===== */
+@import "./global.css";
 
-/* MAIN LAYOUT */
+/* ===== RESET STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+/* ===== LIGHT THEME ===== */
+:root {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: linear-gradient(180deg, #0b1220, #0f172a);
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --hover: rgba(0, 0, 0, 0.05);
+
+  --primary: #4f46e5;
+}
+
+/* ===== DARK THEME ===== */
+.dark-theme {
+  --bg-main: #0b1220;
+  --bg-card: #0f172a;
+  --bg-sidebar: linear-gradient(180deg, #0b1220, #0f172a);
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --hover: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== BODY ===== */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 16px;
+  line-height: 1.6;
+  transition: 0.3s;
+}
+
+/* ===== ROOT LAYOUT ===== */
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 header {
-  background-color: #4f46e5; /* Blue background */
+  background: var(--primary);
   color: white;
   padding: 20px;
   font-size: 18px;
@@ -20,9 +68,9 @@ header {
   align-items: center;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer {
-  background-color: #0f172a;
+  background: #0f172a;
   color: #cbd5f5;
   padding: 15px;
   font-size: 14px;
@@ -30,14 +78,14 @@ footer {
   margin-top: auto;
 }
 
-/* MAIN CONTENT AREA */
+/* ===== MAIN CONTENT ===== */
 .main-content {
   flex-grow: 1;
   padding: 20px;
-  background-color: #ffffff;
+  background: var(--bg-main);
 }
 
-/* GENERAL CONTAINER FOR MOBILE FRIENDLY PAGE */
+/* ===== CONTAINER ===== */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -45,13 +93,106 @@ footer {
   padding: 20px;
 }
 
-/* RESPONSIVE DESIGN */
+/* ===== CARD ===== */
+.card {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== TABLE ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.table th {
+  color: var(--text-muted);
+}
+
+.table tr:hover {
+  background: var(--hover);
+}
+
+/* ===== FORM INPUT ===== */
+input,
+select,
+textarea {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ===== LINKS ===== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== BUTTON ===== */
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-card);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-main);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
   header {
     font-size: 16px;
     padding: 15px;
   }
-  
+
   .container {
     padding: 15px;
   }
