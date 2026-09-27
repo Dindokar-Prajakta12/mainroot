@@ -15,7 +15,29 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
+.tasks-page {
+  padding: 30px;
+  background: var(--bg-main);
+  min-height: 100vh;
+}
 
+.tasks-page h2 {
+  color: var(--text-main);
+}
+
+.tasks-table-container {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.tasks-table thead {
+  background: var(--hover);
+}
+
+.tasks-table tbody tr:hover {
+  background: var(--hover);
+}
 .tasks-table {
   width: 100%;
   border-collapse: collapse;

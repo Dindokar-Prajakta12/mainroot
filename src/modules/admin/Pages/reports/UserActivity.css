@@ -1,81 +1,99 @@
 .report-container {
-  padding: 24px;
-  background: #f9fafb;
+  width: 100%;
+  padding: 20px;
+  background: var(--bg-main);
   min-height: 100vh;
 }
 
+/* TITLE */
 .report-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
-  color: #111827;
+  margin-bottom: 16px;
+  color: var(--text-main);
 }
 
-/* Filters */
+/* FILTER SECTION */
 .report-filters {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  gap: 10px;
 }
 
+/* SELECT */
 .report-filters select {
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-main);
+  outline: none;
 }
 
+/* EXPORT BUTTON */
 .export-btn {
-  padding: 8px 14px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  color: #ffffff;
+  padding: 10px 14px;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .export-btn:hover {
-  background: linear-gradient(180deg, #1f2937, #111827);
-  transform: translateY(-1px);
+  opacity: 0.9;
 }
-/* Table */
+
+/* TABLE */
 .report-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  border-radius: 8px;
+  background: var(--bg-card);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
 }
 
-.report-table th,
-.report-table td {
-  padding: 12px 14px;
-  text-align: left;
-  font-size: 14px;
-}
-
+/* HEADER */
 .report-table thead {
-  background: #f3f4f6;
+  background: var(--hover);
 }
 
 .report-table th {
+  padding: 14px;
+  text-align: left;
+  color: var(--text-main);
   font-weight: 600;
-  color: #374151;
 }
 
+/* BODY */
+.report-table td {
+  padding: 14px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ROW HOVER */
 .report-table tbody tr {
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.report-table tbody tr:last-child {
-  border-bottom: none;
+  transition: 0.2s ease;
 }
 
 .report-table tbody tr:hover {
-  background: #f9fafb;
+  background: var(--hover);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .report-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .report-filters select,
+  .export-btn {
+    width: 100%;
+  }
 }

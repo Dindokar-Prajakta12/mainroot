@@ -3,71 +3,89 @@
   margin: auto;
 }
 
+/* TITLE */
 .page-title {
   font-size: 28px;
   margin-bottom: 20px;
   font-weight: 700;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary);
 }
 
-
+/* FORM CARD */
 .user-form {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 24px;
-  border-radius: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* FORM GROUP */
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
 }
 
+/* LABEL */
 .form-group label {
   font-size: 14px;
   margin-bottom: 6px;
-  color: #374151;
+  color: var(--text-muted);
 }
 
+/* INPUT + SELECT */
 .form-group input,
 .form-group select {
   padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border);
   font-size: 14px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  outline: none;
+  transition: 0.3s ease;
 }
 
+/* FOCUS */
 .form-group input:focus,
 .form-group select:focus {
-  outline: none;
-  border-color: #6366f1;
+  border-color: var(--primary);
 }
 
+/* BUTTON AREA */
 .form-actions {
   display: flex;
   gap: 12px;
   margin-top: 20px;
 }
 
+/* PRIMARY BUTTON */
 .btn-primary {
-  background: linear-gradient(180deg, #0b1220, #0f172a);
+  background: var(--primary);
   color: white;
   padding: 10px 18px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* SECONDARY BUTTON */
 .btn-secondary {
-  background: #e5e7eb;
-  color: #111827;
+  background: var(--hover);
+  color: var(--text-main);
   padding: 10px 18px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  opacity: 0.8;
 }

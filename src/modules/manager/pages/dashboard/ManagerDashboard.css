@@ -1,85 +1,83 @@
 .dashboard {
-    font-family: 'Inter', sans-serif;
-    color: #111827;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  background: var(--bg-main);
+  min-height: 100vh;
+  padding: 20px;
 }
 
+/* TITLE */
 .dashboard h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #111827;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: var(--text-main);
 }
 
+/* CARDS GRID */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
 }
+
+/* CARD (ONLY ONE DEFINITION) */
 .card {
   background: var(--bg-card);
-  border-radius: 16px;
-  padding: 20px;
+  color: var(--text-main);
+  border-radius: 18px;
+  padding: 22px;
   border: 1px solid var(--border);
   box-shadow: 0 5px 20px rgba(0,0,0,0.05);
   transition: 0.3s;
+  font-size: 16px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover {
   transform: translateY(-3px);
-}
-.card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 22px;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-    color: #1f2937;
-    font-size: 16px;
-    font-weight: 600;
+  background: var(--hover);
 }
 
-.cards .card {
-    min-height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dashboard h3 {
-    margin-bottom: 14px;
-    font-size: 20px;
-}
-
+/* TABLE */
 .dashboard table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
+/* HEADERS */
 .dashboard th,
 .dashboard td {
-    padding: 16px 18px;
-    text-align: left;
+  padding: 16px 18px;
+  text-align: left;
 }
 
 .dashboard th {
-    background: #f8fafc;
-    color: #475569;
-    font-weight: 700;
+  background: var(--hover);
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+/* ROWS */
+.dashboard td {
+  color: var(--text-muted);
 }
 
 .dashboard tr:not(:last-child) td {
-    border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
 }
 
-.dashboard td {
-    color: #334155;
-}
-
+/* RESPONSIVE */
 @media (max-width: 980px) {
-    .cards {
-        grid-template-columns: 1fr;
-    }
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }

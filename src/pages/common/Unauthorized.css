@@ -1,19 +1,129 @@
 .unauthorized-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  box-sizing: border-box;
 }
 
 .unauthorized-card {
-    background: white;
-    padding: 32px;
-    border-radius: 12px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    text-align: center;
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
 }
 
 .unauthorized-card h2 {
-    margin-bottom: 12px;
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.unauthorized-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.unauthorized-card .unauthorized-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #fff7ed;
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+
+.unauthorized-card .unauthorized-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.unauthorized-card .btn-primary,
+.unauthorized-card .btn-secondary {
+  min-width: 140px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.unauthorized-card .btn-primary {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.unauthorized-card .btn-primary:hover {
+  background: #ea580c;
+  transform: translateY(-1px);
+}
+
+.unauthorized-card .btn-secondary {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.unauthorized-card .btn-secondary:hover {
+  background: #f9fafb;
+  border-color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+  .unauthorized-container {
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  .unauthorized-card {
+    max-width: 100%;
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+
+  .unauthorized-card h2 {
+    font-size: 22px;
+  }
+
+  .unauthorized-card p {
+    font-size: 14px;
+  }
+
+  .unauthorized-card .unauthorized-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .unauthorized-card .unauthorized-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .unauthorized-card .btn-primary,
+  .unauthorized-card .btn-secondary {
+    width: 100%;
+    min-width: 100%;
+  }
 }

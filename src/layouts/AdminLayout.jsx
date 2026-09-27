@@ -1,40 +1,34 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../modules/admin/components/AdminSidebar";
 import Navbar from "../modules/admin/components/AdminNavbar";
 import Footer from "../components/common/Footer";
-import "./styles/AdminLayout.css"; // Import CSS for AdminLayout
+import { ThemeContext } from "../Context/ThemeContext";
+import "./styles/AdminLayout.css";
 
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   const toggleSidebar = () => {
     setCollapsed((prev) => !prev);
   };
 
   return (
-    <div className={`admin-layout ${collapsed ? "collapsed" : ""} ${darkMode ? "dark" : ""}`}>
-
-      {/* Sidebar */}
+    <div className={`admin-layout ${collapsed ? "collapsed" : ""}`}>
       <Sidebar collapsed={collapsed} />
 
-      {/* Main Section */}
       <div className="main-section">
-
-        {/* Top Navbar */}
         <Navbar
           toggleSidebar={toggleSidebar}
           darkMode={darkMode}
           setDarkMode={setDarkMode}
         />
 
-        {/* Page Content (VERY IMPORTANT: Outlet for nested routes) */}
         <main className="content">
           <Outlet />
         </main>
 
-        {/* Footer */}
         <Footer />
       </div>
     </div>

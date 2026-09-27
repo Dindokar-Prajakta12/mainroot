@@ -8,11 +8,6 @@ const SecuritySettings = () => {
     role: "Admin" // Admin | Manager | User
   };
 
-  // Block unauthorized users
-  if (!["Admin", "Manager", "User"].includes(user.role)) {
-    return <Navigate to="/unauthorized" />;
-  }
-
   const [security, setSecurity] = useState({
     strongPassword: true,
     twoFactorAuth: false,
@@ -20,6 +15,11 @@ const SecuritySettings = () => {
     loginAttempts: true,
     forcePasswordReset: false
   });
+
+  // Block unauthorized users
+  if (!["Admin", "Manager", "User"].includes(user.role)) {
+    return <Navigate to="/unauthorized" />;
+  }
 
   const toggle = (key) => {
     setSecurity((prev) => ({

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 /* ===== THEME ===== */
-import { ThemeProvider } from "../Context/ThemeContext";
+import { ThemeProvider } from "../Context/ThemeProvider";
 
 /* ===== Layouts ===== */
 import AdminLayout from "../layouts/AdminLayout";
@@ -11,6 +11,7 @@ import UserLayout from "../layouts/UserLayout";
 /* ===== Pages ===== */
 import Login from "../auth/pages/LoginPage";
 import Register from "../auth/pages/RegisterPage";
+import ForgotPasswordPage from "../auth/pages/ForgotPasswordPage";
 import { AuthProvider } from "../auth/context/AuthContext";
 import RoleRoute from "../auth/guards/RoleRoute";
 
@@ -27,10 +28,13 @@ import UserActivity from "../modules/admin/Pages/reports/UserActivity";
 import SystemUsage from "../modules/admin/Pages/system-usage/SystemUsage";
 import GeneralSettings from "../modules/admin/Pages/settings/GeneralSettings";
 import SecuritySettings from "../modules/admin/Pages/settings/SecuritySettings";
+import NotificationsSettings from "../modules/admin/Pages/settings/NotificationsSettings";
 import Profile from "../pages/common/Profile";
 import ChangePassword from "../pages/common/ChangePassword";
 import MyProfile from "../pages/common/MyProfile";
 import Help from "../pages/common/Help";
+import Events from "../pages/common/Events";
+import TourGuide from "../pages/common/TourGuide";
 import Unauthorized from "../pages/common/Unauthorized";
 
 /* ===== Manager Pages ===== */
@@ -63,21 +67,18 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        
-        {/* 🔥 ADD THIS */}
         <ThemeProvider>
-
           <Routes>
-
-            {/* Login */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-            {/* Default Redirect */}
             <Route path="/" element={<Navigate to={getDefaultRoute()} replace />} />
 
-            {/* ADMIN */}
-            <Route path="/admin" element={<RoleRoute role="admin" element={<AdminLayout />} />}>
+            <Route
+              path="/admin"
+              element={<RoleRoute role="admin" element={<AdminLayout />} />}
+            >
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="dashboard/overview" element={<Overview />} />
               <Route path="dashboard/analytics" element={<Analytics />} />
@@ -91,42 +92,49 @@ function App() {
               <Route path="system-usage" element={<SystemUsage />} />
               <Route path="settings/general" element={<GeneralSettings />} />
               <Route path="settings/security" element={<SecuritySettings />} />
+              <Route path="settings/notifications" element={<NotificationsSettings />} />
+              <Route path="events" element={<Events />} />
+              <Route path="tour-guide" element={<TourGuide />} />
               <Route path="profile" element={<Profile />} />
               <Route path="change-password" element={<ChangePassword />} />
               <Route path="my-profile" element={<MyProfile />} />
               <Route path="help" element={<Help />} />
             </Route>
 
-            {/* MANAGER */}
-            <Route path="/manager" element={<RoleRoute role="manager" element={<ManagerLayout />} />}>
+            <Route
+              path="/manager"
+              element={<RoleRoute role="manager" element={<ManagerLayout />} />}
+            >
               <Route path="dashboard" element={<ManagerDashboard />} />
               <Route path="team" element={<Team />} />
               <Route path="approvals" element={<Approvals />} />
               <Route path="reports" element={<ManagerReports />} />
+              <Route path="events" element={<Events />} />
+              <Route path="tour-guide" element={<TourGuide />} />
               <Route path="profile" element={<ManagerProfile />} />
+              <Route path="change-password" element={<ChangePassword />} />
               <Route path="settings" element={<ManagerSettings />} />
             </Route>
 
-            {/* USER */}
-            <Route path="/user" element={<RoleRoute role="user" element={<UserLayout />} />}>
+            <Route
+              path="/user"
+              element={<RoleRoute role="user" element={<UserLayout />} />}
+            >
               <Route index element={<Navigate to="dashboard" />} />
               <Route path="dashboard" element={<UserDashboard />} />
               <Route path="tasks" element={<MyTasks />} />
               <Route path="requests" element={<MyRequests />} />
+              <Route path="events" element={<Events />} />
+              <Route path="tour-guide" element={<TourGuide />} />
               <Route path="reports" element={<MyReports />} />
               <Route path="profile" element={<UserProfile />} />
               <Route path="settings" element={<UserSettings />} />
               <Route path="help" element={<UserHelp />} />
             </Route>
 
-            {/* Unauthorized */}
             <Route path="/unauthorized" element={<Unauthorized />} />
-
           </Routes>
-
         </ThemeProvider>
-        {/* 🔥 END */}
-
       </AuthProvider>
     </BrowserRouter>
   );

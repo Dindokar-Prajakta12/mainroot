@@ -1,15 +1,105 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiBell, FiSun, FiMoon, FiLogOut } from "react-icons/fi";
 import AuthContext from "../../../auth/context/AuthContext";
 import { ThemeContext } from "../../../Context/ThemeContext";
+import request from "../../../api/api";
 import "./ManagerNavbar.css";
 
-const ManagerNavbar = ({ toggleSidebar}) => {
+const ManagerNavbar = ({ toggleSidebar }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
-  const { logout } = useContext(AuthContext);
- const { darkMode, setDarkMode } = useContext(ThemeContext); 
- 
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [toastMessage, setToastMessage] = useState("");
+  const previousUnreadRef = useRef(0);
+  const dropdownRef = useRef(null);
+  const { logout, user } = useContext(AuthContext);
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
+
+  const refreshNotifications = async () => {
+    try {
+      const [items, unread] = await Promise.all([
+        request("/api/tasks/notifications/"),
+        request("/api/tasks/notifications/unread-count/"),
+      ]);
+
+      const nextUnreadCount = Number(unread?.unread_count || 0);
+      const previousUnreadCount = previousUnreadRef.current;
+
+      setNotifications(Array.isArray(items) ? items : []);
+      setUnreadCount(nextUnreadCount);
+
+      if (previousUnreadCount > 0 && nextUnreadCount > previousUnreadCount) {
+        setToastMessage("You have new notifications.");
+        window.setTimeout(() => setToastMessage(""), 3500);
+      }
+
+      previousUnreadRef.current = nextUnreadCount;
+    } catch {
+      setNotifications([]);
+      setUnreadCount(0);
+    }
+  };
+
+  useEffect(() => {
+    if (!user) return;
+
+    const loadNotifications = () => {
+      void refreshNotifications();
+    };
+
+    const timer = window.setInterval(() => {
+      void refreshNotifications();
+    }, 30000);
+
+    const timeoutId = window.setTimeout(loadNotifications, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.clearInterval(timer);
+    };
+  }, [user]);
+
+  useEffect(() => {
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const host = window.location.hostname === "localhost" ? "127.0.0.1" : window.location.hostname;
+    const ws = new WebSocket(`${protocol}//${host}:8000/ws/notifications/`);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data || "{}");
+      if (data?.message) {
+        setToastMessage(data.message);
+        window.setTimeout(() => setToastMessage(""), 4000);
+        refreshNotifications();
+      }
+    };
+
+    return () => ws.close();
+  }, []);
+
+  const handleNotificationClick = async (item) => {
+    if (!item.is_read) {
+      try {
+        await request(`/api/tasks/notifications/${item.id}/read/`, { method: "PATCH" });
+        await refreshNotifications();
+      } catch (error) {
+        // Ignore read-state errors for the UI
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpenDropdown(false);
+        setNotificationOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="navbar">
@@ -18,7 +108,7 @@ const ManagerNavbar = ({ toggleSidebar}) => {
         <h2>Manager Dashboard</h2>
       </div>
 
-      <div className="nav-right">
+      <div className="nav-right" ref={dropdownRef}>
         {/* Dark Mode Toggle */}
         {darkMode ? (
           <FiSun className="nav-icon" onClick={() => setDarkMode(false)} />
@@ -26,12 +116,76 @@ const ManagerNavbar = ({ toggleSidebar}) => {
           <FiMoon className="nav-icon" onClick={() => setDarkMode(true)} />
         )}
 
-        <FiBell className="nav-icon" />
+        <button
+          className="notification-button"
+          type="button"
+          title="Notifications"
+          onClick={() => {
+            setNotificationOpen(!notificationOpen);
+            setOpenDropdown(false);
+          }}
+        >
+          <FiBell className="nav-icon" />
+          <span className="notification-badge">{unreadCount}</span>
+        </button>
+
+        {toastMessage && (
+          <div style={{ position: "fixed", top: 12, right: 18, zIndex: 1200, background: "#111827", color: "#fff", padding: "10px 14px", borderRadius: 10, boxShadow: "0 10px 20px rgba(15,23,42,0.25)" }}>
+            {toastMessage}
+          </div>
+        )}
+
+        {toastMessage && (
+          <div style={{ position: "fixed", top: 12, right: 18, zIndex: 1200, background: "#111827", color: "#fff", padding: "10px 14px", borderRadius: 10, boxShadow: "0 10px 20px rgba(15,23,42,0.25)" }}>
+            {toastMessage}
+          </div>
+        )}
+
+        {notificationOpen && (
+          <div className="dropdown">
+            <div className="dropdown-item" style={{ fontWeight: 600 }}>
+              Notifications
+            </div>
+            <button
+              type="button"
+              className="dropdown-item"
+              onClick={async () => {
+                try {
+                  await request("/api/tasks/notifications/read-all/", { method: "PATCH" });
+                  await refreshNotifications();
+                } catch {
+                  // Ignore update errors
+                }
+              }}
+              style={{ textAlign: "left", width: "100%" }}
+            >
+              Mark all as read
+            </button>
+            {notifications.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`dropdown-item ${item.is_read ? "" : "unread"}`}
+                onClick={() => handleNotificationClick(item)}
+                style={{ textAlign: "left", width: "100%" }}
+              >
+                <strong>{item.title}</strong>
+                {item.message ? <div style={{ fontSize: "0.88rem", color: "#475569" }}>{item.message}</div> : null}
+              </button>
+            ))}
+            {notifications.length === 0 && (
+              <div className="dropdown-item">No new notifications</div>
+            )}
+          </div>
+        )}
 
         {/* Avatar */}
         <div
           className="avatar"
-          onClick={() => setOpenDropdown(!openDropdown)}
+          onClick={() => {
+            setOpenDropdown(!openDropdown);
+            setNotificationOpen(false);
+          }}
         >
           {localStorage.getItem("profileImage") ? (
             <img

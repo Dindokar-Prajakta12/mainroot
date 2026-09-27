@@ -1,39 +1,41 @@
-/* Full Page */
 .help-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f4f6f9;
+  background: var(--bg-main);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
 }
 
-/* Card */
+/* CARD */
 .help-card {
   width: 500px;
   max-width: 95%;
-  background: #ffffff;
+  background: var(--bg-card);
+  color: var(--text-main);
   padding: 30px;
   border-radius: 14px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
+/* TITLE */
 .help-card h2 {
   margin-bottom: 15px;
-  color: #1f2937;
+  color: var(--text-main);
 }
 
+/* DESCRIPTION */
 .help-card p {
-  color: #4b5563;
+  color: var(--text-muted);
   font-size: 14px;
   margin-bottom: 20px;
 }
 
-/* Sections */
+/* SECTIONS */
 .help-section {
-  background: #f9fafb;
+  background: var(--hover);
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 12px;
@@ -41,16 +43,16 @@
 
 .help-section h4 {
   margin-bottom: 5px;
-  color: #111827;
+  color: var(--text-main);
 }
 
-/* Button */
+/* BUTTON */
 .help-btn {
   margin-top: 15px;
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(180deg, #111827, #1f2937);
+  background: var(--primary);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -58,6 +60,6 @@
 }
 
 .help-btn:hover {
+  opacity: 0.9;
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }

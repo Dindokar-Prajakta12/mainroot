@@ -1,15 +1,11 @@
 /* ===============================
-   COMMON
+   HEADINGS (SCOPED)
 ================================ */
-h3 {
+.page-title {
   margin-bottom: 16px;
   font-size: 18px;
   font-weight: 600;
-  color: #0f172a;
-}
-
-body.dark-theme h3 {
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 /* ===============================
@@ -17,15 +13,11 @@ body.dark-theme h3 {
 ================================ */
 .user-form {
   max-width: 420px;
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 20px;
   border-radius: 12px;
+  border: 1px solid var(--border);
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-body.dark-theme .user-form {
-  background: #111827;
-  box-shadow: none;
 }
 
 .user-form input,
@@ -34,54 +26,50 @@ body.dark-theme .user-form {
   padding: 10px 12px;
   margin-bottom: 14px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-main);
   font-size: 14px;
   outline: none;
 }
 
-body.dark-theme .user-form input,
-body.dark-theme .user-form select {
-  background: #020617;
-  border: 1px solid #1f2937;
-  color: #e5e7eb;
-}
-
 .user-form input::placeholder {
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
+.user-form input:focus,
+.user-form select:focus {
+  border-color: var(--primary);
+}
+
+/* BUTTON */
 .user-form button {
   width: 100%;
   padding: 10px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .user-form button:hover {
-  background: #1d4ed8;
+  opacity: 0.9;
 }
 
 /* ===============================
-   ALL USERS TABLE
+   TABLE
 ================================ */
 .user-table {
   width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--border);
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-body.dark-theme .user-table {
-  background: #111827;
-  box-shadow: none;
 }
 
 .user-table th,
@@ -92,47 +80,27 @@ body.dark-theme .user-table {
 }
 
 .user-table thead {
-  background: #f1f5f9;
-}
-
-body.dark-theme .user-table thead {
-  background: #020617;
+  background: var(--hover);
 }
 
 .user-table th {
   font-weight: 600;
-  color: #0f172a;
-}
-
-body.dark-theme .user-table th {
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 .user-table td {
-  color: #334155;
-  border-top: 1px solid #e5e7eb;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
 }
 
-body.dark-theme .user-table td {
-  color: #cbd5e1;
-  border-top: 1px solid #1f2937;
-}
-
+/* ROW HOVER */
 .user-table tbody tr:hover {
-  background: #f8fafc;
-}
-
-body.dark-theme .user-table tbody tr:hover {
-  background: #1f2937;
+  background: var(--hover);
 }
 
 /* ===============================
-   EMPTY STATE
+   EMPTY TEXT (NO GLOBAL P)
 ================================ */
-p {
-  color: #6b7280;
-}
-
-body.dark-theme p {
-  color: #94a3b8;
+.empty-text {
+  color: var(--text-muted);
 }

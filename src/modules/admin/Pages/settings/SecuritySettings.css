@@ -1,49 +1,82 @@
 .settings-container {
   padding: 24px;
+  background: var(--bg-main);
+  min-height: 100vh;
 }
 
+/* CARD */
 .settings-card {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
+  border: 1px solid var(--border);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
 }
 
+.settings-card:hover {
+  transform: translateY(-2px);
+}
+
+/* TITLE */
 .settings-card h3 {
   margin-bottom: 14px;
+  color: var(--text-main);
 }
 
+/* LABEL */
 .settings-card label {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
   font-size: 14px;
+  color: var(--text-muted);
 }
 
+/* SAVE BUTTON */
 .save-btn {
   padding: 10px 16px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
+.save-btn:hover {
+  opacity: 0.9;
+}
+
+/* DANGER BUTTON */
 .danger-btn {
   margin-top: 10px;
   padding: 8px 14px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
+  background: #ef4444;
   color: white;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
 }
 
+.danger-btn:hover {
+  opacity: 0.9;
+}
+
+/* OUTLINE DANGER BUTTON */
 .danger-outline-btn {
   margin-left: 10px;
   padding: 8px 14px;
-  border: 1px solid linear-gradient(180deg, #0b1220, #0f172a);
-  color: #dc2626;
+  border: 1px solid #ef4444;
+  color: #ef4444;
   background: transparent;
   border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.danger-outline-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
 }

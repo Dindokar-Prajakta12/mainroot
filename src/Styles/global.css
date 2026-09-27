@@ -1,23 +1,14 @@
-/* RESET STYLES */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif; /* Global font family */
+  font-family: "Arial", sans-serif;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  background-color: #f9f9f9; /* Light background color */
-  color: #333; /* Default text color */
-  font-size: 16px; /* Default font size */
-}
-/* ===== LIGHT THEME ===== */
 :root {
   --bg-main: #f8fafc;
   --bg-card: #ffffff;
-  --bg-sidebar: linear-gradient(180deg, #0b1220, #0f172a);
+  --bg-sidebar: #ffffff;
 
   --text-main: #0f172a;
   --text-muted: #64748b;
@@ -28,7 +19,6 @@ html, body {
   --primary: #4f46e5;
 }
 
-/* ===== DARK THEME ===== */
 .dark-theme {
   --bg-main: #0b1220;
   --bg-card: #0f172a;
@@ -39,48 +29,57 @@ html, body {
 
   --border: rgba(255, 255, 255, 0.08);
   --hover: rgba(255, 255, 255, 0.08);
+
+  --primary: #6366f1;
 }
 
-/* Scrollbar styles */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+input,
+select,
+textarea {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-card);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background: var(--text-muted);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
+  background: var(--text-main);
 }
 
-/* BODY */
-body {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* LINKS */
-a {
-  text-decoration: none;
-  color: inherit; /* Inherit color from parent */
-}
-
-/* BUTTON */
-button {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-}
-
-/* RESPONSIVE FONT SIZES */
 @media (max-width: 768px) {
   body {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px;
   }
 }

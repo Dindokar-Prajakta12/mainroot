@@ -29,11 +29,6 @@ const GeneralSettings = () => {
   // Later from AuthContext
   const user = { role: "Admin" };
 
-  // Block normal users
-  if (user.role === "User") {
-    return <Navigate to="/unauthorized" />;
-  }
-
   // Frontend state (mock settings)
   const [settings, setSettings] = useState({
     userRegistration: true,
@@ -46,6 +41,11 @@ const GeneralSettings = () => {
     exportPermissions: false,
     approvalFlows: false
   });
+
+  // Block normal users
+  if (user.role === "User") {
+    return <Navigate to="/unauthorized" />;
+  }
 
   const toggleSetting = (key) => {
     setSettings((prev) => ({

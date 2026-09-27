@@ -35,8 +35,7 @@ const Login = () => {
 
       login(response.token, response.user);
 
-      navigate("/dashboard"); // fallback redirect
-
+      // role-based redirect is handled inside AuthContext.login()
     } catch (error) {
       console.log("Error:", error);
       setError(
@@ -89,6 +88,10 @@ const Login = () => {
               Login
             </button>
           </form>
+
+          <p className="register-text">
+            <Link to="/forgot-password">Forgot password?</Link>
+          </p>
 
           <p className="register-text">
             First time here? <Link to="/register">Register now</Link>

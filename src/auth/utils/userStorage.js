@@ -8,7 +8,7 @@ export const DEFAULT_ADMIN = {
 export const getUsers = () => {
     try {
         return JSON.parse(localStorage.getItem("users") || "[]");
-    } catch (error) {
+    } catch {
         return [];
     }
 };

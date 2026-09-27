@@ -1,13 +1,18 @@
 .usage-container {
   padding: 20px;
+  background: var(--bg-main);
+  min-height: 100vh;
 }
 
+/* TITLE */
 .usage-title {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 20px;
+  color: var(--text-main);
 }
 
+/* CARDS GRID */
 .usage-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -15,45 +20,73 @@
   margin-bottom: 30px;
 }
 
+/* CARD */
 .usage-card {
-  background: #fff;
-  border-radius: 8px;
+  background: var(--bg-card);
+  border-radius: 10px;
   padding: 16px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  transition: 0.3s ease;
 }
 
+/* HOVER */
+.usage-card:hover {
+  transform: translateY(-3px);
+  background: var(--hover);
+}
+
+/* CARD TEXT */
 .usage-card h3 {
   font-size: 14px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .usage-card p {
   font-size: 24px;
   font-weight: 600;
   margin-top: 8px;
+  color: var(--text-main);
 }
 
+/* SECTION TITLE */
 .section-title {
   font-size: 18px;
   margin-bottom: 12px;
+  color: var(--text-main);
 }
 
+/* TABLE */
 .usage-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--bg-card);
   border-radius: 8px;
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
+/* TABLE CELLS */
 .usage-table th,
 .usage-table td {
   padding: 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   text-align: left;
 }
 
+/* HEADER */
 .usage-table th {
-  background-color: #f9fafb;
+  background: var(--hover);
+  color: var(--text-main);
   font-weight: 500;
+}
+
+/* BODY TEXT */
+.usage-table td {
+  color: var(--text-muted);
+}
+
+/* ROW HOVER */
+.usage-table tbody tr:hover {
+  background: var(--hover);
 }

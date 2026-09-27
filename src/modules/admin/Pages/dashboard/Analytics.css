@@ -1,22 +1,28 @@
-/* Dashboard Wrapper */
 .dashboard {
   width: 100%;
 }
 
-/* Title */
+/* TITLE */
 .page-title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 16px;
-  color: #2563eb;
+  color: var(--primary);
 }
 
-/* Chart Box */
+/* CHART BOX */
 .chart-box {
   margin-top: 18px;
-  background: white;
+  background: var(--bg-card);
   padding: 16px;
   border-radius: 12px;
-  height: 260px; /* Adjust height for better visualization */
+  height: 260px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
+  transition: 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.chart-box:hover {
+  transform: translateY(-2px);
 }

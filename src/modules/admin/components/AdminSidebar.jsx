@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FiGrid,
@@ -7,6 +7,8 @@ import {
   FiSettings,
   FiFileText,
   FiUser,
+  FiBell,
+  FiCompass,
   FiChevronDown,
 } from "react-icons/fi";
 import "../styles/sidebar.css"; // Corrected CSS import
@@ -19,9 +21,7 @@ const Sidebar = ({ collapsed }) => {
     role: "Admin", // Admin | Manager | User
   };
 
-  useEffect(() => {
-    if (collapsed) setOpenMenu("");
-  }, [collapsed]);
+  const activeMenu = collapsed ? "" : openMenu;
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? "" : menu);
@@ -37,7 +37,7 @@ const Sidebar = ({ collapsed }) => {
 
       <ul className="menu">
         {/* ================= DASHBOARD ================= */}
-        <li className={`menu-group ${openMenu === "Dashboard" ? "active" : ""}`}>
+        <li className={`menu-group ${activeMenu === "Dashboard" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Dashboard")}>
             <div className="menu-item">
               <FiGrid />
@@ -45,12 +45,12 @@ const Sidebar = ({ collapsed }) => {
             </div>
             {!collapsed && (
               <FiChevronDown
-                className={openMenu === "Dashboard" ? "rotate" : ""}
+                className={activeMenu === "Dashboard" ? "rotate" : ""}
               />
             )}
           </div>
 
-          {!collapsed && openMenu === "Dashboard" && (
+          {!collapsed && activeMenu === "Dashboard" && (
             <ul className="submenu">
               <li>
                 <NavLink to="/admin/dashboard/overview">Overview</NavLink>
@@ -63,7 +63,7 @@ const Sidebar = ({ collapsed }) => {
         </li>
 
         {/* ================= USERS ================= */}
-        <li className={`menu-group ${openMenu === "Users" ? "active" : ""}`}>
+        <li className={`menu-group ${activeMenu === "Users" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Users")}>
             <div className="menu-item">
               <FiUsers />
@@ -71,12 +71,12 @@ const Sidebar = ({ collapsed }) => {
             </div>
             {!collapsed && (
               <FiChevronDown
-                className={openMenu === "Users" ? "rotate" : ""}
+                className={activeMenu === "Users" ? "rotate" : ""}
               />
             )}
           </div>
 
-          {!collapsed && openMenu === "Users" && (
+          {!collapsed && activeMenu === "Users" && (
             <ul className="submenu">
               <li>
                 <NavLink to="/admin/users/all">All Users</NavLink>
@@ -95,7 +95,7 @@ const Sidebar = ({ collapsed }) => {
         </li>
 
         {/* ================= REPORTS ================= */}
-        <li className={`menu-group ${openMenu === "Reports" ? "active" : ""}`}>
+        <li className={`menu-group ${activeMenu === "Reports" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Reports")}>
             <div className="menu-item">
               <FiBarChart2 />
@@ -103,12 +103,12 @@ const Sidebar = ({ collapsed }) => {
             </div>
             {!collapsed && (
               <FiChevronDown
-                className={openMenu === "Reports" ? "rotate" : ""}
+                className={activeMenu === "Reports" ? "rotate" : ""}
               />
             )}
           </div>
 
-          {!collapsed && openMenu === "Reports" && (
+          {!collapsed && activeMenu === "Reports" && (
             <ul className="submenu">
               <li>
                 <NavLink to="/admin/reports/sales">Sales Report</NavLink>
@@ -127,7 +127,7 @@ const Sidebar = ({ collapsed }) => {
         </li>
 
         {/* ================= SETTINGS ================= */}
-        <li className={`menu-group ${openMenu === "Settings" ? "active" : ""}`}>
+        <li className={`menu-group ${activeMenu === "Settings" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Settings")}>
             <div className="menu-item">
               <FiSettings />
@@ -135,23 +135,25 @@ const Sidebar = ({ collapsed }) => {
             </div>
             {!collapsed && (
               <FiChevronDown
-                className={openMenu === "Settings" ? "rotate" : ""}
+                className={activeMenu === "Settings" ? "rotate" : ""}
               />
             )}
           </div>
 
-          {!collapsed && openMenu === "Settings" && (
+          {!collapsed && activeMenu === "Settings" && (
             <ul className="submenu">
               <li>
                 <NavLink to="/admin/settings/security">Security</NavLink>
               </li>
-              <li>Notifications</li>
+              <li>
+                <NavLink to="/admin/settings/notifications">Notifications</NavLink>
+              </li>
             </ul>
           )}
         </li>
 
         {/* ================= LOGS ================= */}
-        <li className={`menu-group ${openMenu === "Logs" ? "active" : ""}`}>
+        <li className={`menu-group ${activeMenu === "Logs" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Logs")}>
             <div className="menu-item">
               <FiFileText />
@@ -159,12 +161,12 @@ const Sidebar = ({ collapsed }) => {
             </div>
             {!collapsed && (
               <FiChevronDown
-                className={openMenu === "Logs" ? "rotate" : ""}
+                className={activeMenu === "Logs" ? "rotate" : ""}
               />
             )}
           </div>
 
-          {!collapsed && openMenu === "Logs" && (
+          {!collapsed && activeMenu === "Logs" && (
             <ul className="submenu">
               <li>Login Logs</li>
               <li>Action History</li>
@@ -172,8 +174,41 @@ const Sidebar = ({ collapsed }) => {
           )}
         </li>
 
+        {/* ================= EVENTS ================= */}
+        <li className={`menu-group ${activeMenu === "Events" ? "active" : ""}`}>
+          <div className="menu-row" onClick={() => toggleMenu("Events")}>
+            <div className="menu-item">
+              <FiBell />
+              {!collapsed && <span>Events</span>}
+            </div>
+            {!collapsed && (
+              <FiChevronDown
+                className={activeMenu === "Events" ? "rotate" : ""}
+              />
+            )}
+          </div>
+
+          {!collapsed && activeMenu === "Events" && (
+            <ul className="submenu">
+              <li>
+                <NavLink to="/admin/events">Events & Notices</NavLink>
+              </li>
+            </ul>
+          )}
+        </li>
+
+        {/* ================= TOUR GUIDE ================= */}
+        <li>
+          <NavLink to="/admin/tour-guide" className="menu-row">
+            <div className="menu-item">
+              <FiCompass />
+              {!collapsed && <span>Tour Guide</span>}
+            </div>
+          </NavLink>
+        </li>
+
         {/* ================= PROFILE ================= */}
-        <li className={`menu-group ${openMenu === "Profile" ? "active" : ""}`}>
+        <li className={`menu-group ${activeMenu === "Profile" ? "active" : ""}`}>
           <div className="menu-row" onClick={() => toggleMenu("Profile")}>
             <div className="menu-item">
               <FiUser />
@@ -181,12 +216,12 @@ const Sidebar = ({ collapsed }) => {
             </div>
             {!collapsed && (
               <FiChevronDown
-                className={openMenu === "Profile" ? "rotate" : ""}
+                className={activeMenu === "Profile" ? "rotate" : ""}
               />
             )}
           </div>
 
-          {!collapsed && openMenu === "Profile" && (
+          {!collapsed && activeMenu === "Profile" && (
             <ul className="submenu">
               <li>
                 <NavLink to="/admin/profile">My Profile</NavLink>
